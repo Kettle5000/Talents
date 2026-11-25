@@ -110,6 +110,17 @@ public final class HandlerLearnByDoing {
         return !enabled() || currentLevel + 1 <= HandlerCommonConfig.HANDLER.instance().learnByDoingMaxBoughtLevel;
     }
 
+    /**
+     * Points of learn-by-doing XP an aptitude at this level needs for the next one. While the level can still be
+     * bought, that's the buy cost times learnByDoingBuyableCostMultiplier: the XP orbs from the same actions can buy
+     * it too, so those levels came about twice as fast as the ones above. Used by give() and the screen.
+     */
+    public static int doingPoints(int currentLevel) {
+        int points = AptitudeLevelUpSP.requiredPoints(currentLevel);
+        if (!canBuyLevel(currentLevel)) return points;
+        return Math.round(points * Math.max(1.0F, HandlerCommonConfig.HANDLER.instance().learnByDoingBuyableCostMultiplier));
+    }
+
     private static HandlerLearnByDoingConfig rates() {
         return HandlerLearnByDoingConfig.HANDLER.instance();
     }
@@ -134,7 +145,7 @@ public final class HandlerLearnByDoing {
         double xp = capability.getAptitudeXp(aptitude) + vanillaXp * rates().scale;
         boolean leveled = false;
         while (level < common.aptitudeMaxLevel) {
-            int needed = AptitudeLevelUpSP.requiredPoints(level);
+            int needed = doingPoints(level);
             if (xp < needed) break;
             if (capability.getGlobalLevel() >= common.playersMaxGlobalLevel) {
                 xp = needed;                 // can't level now: keep exactly enough for when the limit goes up

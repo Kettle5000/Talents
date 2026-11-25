@@ -51,6 +51,12 @@ public class HandlerCommonConfig {
     @AutoGen(category = "common", group = "general")
     @IntField(min = 0, max = 1000)
     public int learnByDoingMaxBoughtLevel = 16;
+
+    @SerialEntry(comment = "With learn by doing on: levels that can still be bought (up to learnByDoingMaxBoughtLevel) need this many times their usual points from what you do, since the XP orbs from the same things can buy them too. 1.0 = the same as the levels above.")
+    @AutoGen(category = "common", group = "general")
+    @FloatField(min = 1.0f, max = 100.0f)
+    public float learnByDoingBuyableCostMultiplier = 1.0f;
+
     @SerialEntry(comment = "Show potions overlay over skills")
     @AutoGen(category = "common", group = "general")
     @Boolean(formatter = Boolean.Formatter.ON_OFF)

@@ -310,7 +310,7 @@ public class TalentsScreen extends Screen {
                             Component.translatable(aptitude.getKey()).withStyle(color)).withStyle(ChatFormatting.GRAY));
                 }
                 if (learnByDoing) {
-                    int needed = AptitudeLevelUpSP.requiredPoints(aptitudeLevel);
+                    int needed = HandlerLearnByDoing.doingPoints(aptitudeLevel);
                     int have = (int) Math.min(capability.getAptitudeXp(aptitude), needed);
                     lines.add(Component.translatable(buyable ? "tooltip.aptitude.learn_by_doing_progress" : "tooltip.aptitude.learn_by_doing",
                             Component.literal(String.valueOf(have)).withStyle(ChatFormatting.GREEN),

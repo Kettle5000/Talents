@@ -28,6 +28,7 @@ public class CommonConfigSyncCP {
     private final boolean displayTitlesAsPrefix;
     private final boolean learnByDoing;
     private final int learnByDoingMaxBoughtLevel;
+    private final float learnByDoingBuyableCostMultiplier;
 
     // Passive
     private final float attackDamageValue;
@@ -84,6 +85,7 @@ public class CommonConfigSyncCP {
         displayTitlesAsPrefix = config.displayTitlesAsPrefix;
         learnByDoing = config.learnByDoing;
         learnByDoingMaxBoughtLevel = config.learnByDoingMaxBoughtLevel;
+        learnByDoingBuyableCostMultiplier = config.learnByDoingBuyableCostMultiplier;
 
         // Passives
         attackDamageValue = config.attackDamageValue;
@@ -147,6 +149,7 @@ public class CommonConfigSyncCP {
         displayTitlesAsPrefix = buffer.readBoolean();
         learnByDoing = buffer.readBoolean();
         learnByDoingMaxBoughtLevel = buffer.readInt();
+        learnByDoingBuyableCostMultiplier = buffer.readFloat();
 
         // Passives
         attackDamageValue = buffer.readFloat();
@@ -210,6 +213,7 @@ public class CommonConfigSyncCP {
         buffer.writeBoolean(this.displayTitlesAsPrefix);
         buffer.writeBoolean(this.learnByDoing);
         buffer.writeInt(this.learnByDoingMaxBoughtLevel);
+        buffer.writeFloat(this.learnByDoingBuyableCostMultiplier);
 
         // Passives
         buffer.writeFloat(this.attackDamageValue);
@@ -281,6 +285,7 @@ public class CommonConfigSyncCP {
                 config.displayTitlesAsPrefix = this.displayTitlesAsPrefix;
                 config.learnByDoing = this.learnByDoing;
                 config.learnByDoingMaxBoughtLevel = this.learnByDoingMaxBoughtLevel;
+                config.learnByDoingBuyableCostMultiplier = this.learnByDoingBuyableCostMultiplier;
 
                 // Passives
                 config.attackDamageValue = this.attackDamageValue;
